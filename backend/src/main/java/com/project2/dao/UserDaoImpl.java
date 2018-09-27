@@ -12,8 +12,7 @@ import com.project2.model.User;
 
 @Repository
 @Transactional
-public class UserDaoImpl implements UserDao
-{
+public class UserDaoImpl implements UserDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	public void registration(User user) {
@@ -53,6 +52,6 @@ public class UserDaoImpl implements UserDao
 		
 	}
 
-}
+	}
 
 

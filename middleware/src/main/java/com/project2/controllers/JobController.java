@@ -21,61 +21,66 @@ import com.project2.model.Job;
 import com.project2.model.User;
 
 @RestController
-public class JobController
-{
+public class JobController {
 	@Autowired
 	private JobDao jobDao;
 	@Autowired
 	private UserDao userDao;
+	
 
-	@RequestMapping(value = "/addjob", method = RequestMethod.POST)
-	public ResponseEntity<?> addJob(@RequestBody Job job, HttpSession session) {
-
-		String email = (String) session.getAttribute("loginId");
-
-		if (email == null) {
-			ErrorClazz error = new ErrorClazz(4, "Unauthorized access....please login");
-			return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
+	@RequestMapping(value="/addjob",method=RequestMethod.POST)
+	
+	public ResponseEntity<?> addJob(@RequestBody Job job,HttpSession session){
+		
+		String email=(String)session.getAttribute("loginId");
+		
+		if(email==null) {
+				ErrorClazz error=new ErrorClazz(4,"Unauthorized access....please login");
+				return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
 		}
-		User user = userDao.getUser(email);
-		if (!user.getRole().equals("ADMIN")) {
-			ErrorClazz error = new ErrorClazz(5, "Access Denied");
-			return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED);
+		User user=userDao.getUser(email);
+		if(!user.getRole().equals("ADMIN")) {
+			ErrorClazz error=new ErrorClazz(5,"Access Denied");
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
 
 		}
 		try {
 			job.setPostedOn(new Date());
 			jobDao.addJob(job);
-			return new ResponseEntity<Job>(job, HttpStatus.OK);
-		} catch (Exception e) {
-			ErrorClazz error = new ErrorClazz(6, "Unable to insert job details...fields are empty");
-			return new ResponseEntity<ErrorClazz>(error, HttpStatus.INTERNAL_SERVER_ERROR);
-
+			return new ResponseEntity<Job>(job,HttpStatus.OK);
+		}catch(Exception e)
+		{
+			ErrorClazz error=new ErrorClazz(6,"Unable to insert job details...fields are empty");
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+	
 		}
-
+		
+			
 	}
 
-	@RequestMapping(value = "/getalljobs", method = RequestMethod.GET)
-	public ResponseEntity<?> getAllJobs(HttpSession session) {
-		String email = (String) session.getAttribute("loginId");
-		if (email == null) {// not logged in [Authenticated]
-			ErrorClazz error = new ErrorClazz(4, "Unauthrozied access.. Please login");
-			return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED); // login page
+       @RequestMapping(value="/getalljobs",method=RequestMethod.GET)	
+	   public ResponseEntity<?> getAllJobs(HttpSession session){
+    	String email=(String)session.getAttribute("loginId");
+		if(email==null){//not logged in [Authenticated]
+			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //login page
 		}
-		List<Job> jobs = jobDao.getAllJobs();
-		return new ResponseEntity<List<Job>>(jobs, HttpStatus.OK);// success
+		List<Job> jobs=jobDao.getAllJobs();
+		return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);//success
 	}
+       
 
-	@RequestMapping(value = "/getjob/{id}", method = RequestMethod.GET)
-	public ResponseEntity<?> getJob(@PathVariable int id, HttpSession session) {
-		String email = (String) session.getAttribute("loginId");
-		if (email == null) {// not logged in [Authenticated]
-			ErrorClazz error = new ErrorClazz(4, "Unauthrozied access.. Please login");
-			return new ResponseEntity<ErrorClazz>(error, HttpStatus.UNAUTHORIZED); // login page
-		}
-		Job job = jobDao.getJob(id);
-		return new ResponseEntity<Job>(job, HttpStatus.OK);
-
-	}
+       @RequestMapping(value="/getjob/{id}",method=RequestMethod.GET)
+       public ResponseEntity<?> getJob(@PathVariable int id, HttpSession session){
+       	String email=(String)session.getAttribute("loginId");
+   		if(email==null){//not logged in [Authenticated]
+   			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
+   			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //login page
+   		}
+   		Job job=jobDao.getJob(id);
+   		return new ResponseEntity<Job>(job,HttpStatus.OK);
+	
+	
+       }
 
 }

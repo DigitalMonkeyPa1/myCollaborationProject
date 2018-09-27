@@ -11,11 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.project2.model.Job;
-
 @Repository
 @Transactional
-public class JobDaoImpl implements JobDao
-{
+public class JobDaoImpl implements JobDao {
 	@Autowired
 	private SessionFactory sessionFactory;
 	public void addJob(Job job) {

@@ -1,7 +1,4 @@
-/**
- * JobController
- */
-	app.controller('JobController',function($scope,JobService,$location,$rootScope,$routeParams) {
+app.controller('JobController',function($scope,JobService,$location,$rootScope,$routeParams) {
 		var id=$routeParams.id
 		if(id!=undefined){
 		JobService.getJob(id).then(function(response){
