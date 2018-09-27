@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.project2.model.BlogComment;
 import com.project2.model.BlogPost;
+import com.project2.model.Notification;
 
 
 @Repository
@@ -48,22 +49,22 @@ public class BlogPostDaoImpl implements BlogPostDao {
 		BlogPost blogPost=(BlogPost)session.get(BlogPost.class,id);
 		blogPost.setApproved(true);
 		session.update(blogPost);
-		/*Notification notification=new Notification();
+		Notification notification=new Notification();
 		notification.setBlogTitle(blogPost.getBlogTitle());
 		notification.setEmail(blogPost.getPostedBy().getEmail());
 		notification.setApprovalStatus("Approved");
-		session.save(notification);*/
+		session.save(notification);
 	}
 
 	public void blogRejected(int id, String rejectionReason) {
 		Session session=sessionFactory.getCurrentSession();
 		BlogPost blogPost=(BlogPost)session.get(BlogPost.class,id);
-		/*Notification notification=new Notification();
+		Notification notification=new Notification();
 		notification.setBlogTitle(blogPost.getBlogTitle());
 		notification.setEmail(blogPost.getPostedBy().getEmail());
 		notification.setApprovalStatus("Rejected");
 		notification.setRejectionReason(rejectionReason);
-		session.save(notification);*/
+		session.save(notification);
 		session.delete(blogPost);
 	}
 
