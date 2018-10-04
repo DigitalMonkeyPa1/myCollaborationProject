@@ -30,7 +30,6 @@ public class JobDaoImpl implements JobDao {
 	}
 	public Job getJob(int id) {
 			Session session=sessionFactory.getCurrentSession();
-			//select * from job where id=?
 			Job job=(Job)session.get(Job.class, id);
 			return job;
 		

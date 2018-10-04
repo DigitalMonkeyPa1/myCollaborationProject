@@ -1,6 +1,3 @@
-/**
- * BlogController
- */
 app.controller('BlogController',function($scope,$location,BlogService,$rootScope,$sce){
 
 
@@ -16,22 +13,21 @@ app.controller('BlogController',function($scope,$location,BlogService,$rootScope
 	}
 		
 
-		//List of blogs waiting for approval
-		if($rootScope.loggedInUser.role=='ADMIN'){
-		BlogService.getBlogsWaitingForApproval().then(
-				function(response){
-					$scope.blogsWaitingForApproval=response.data //select * from blogpost where approved=false
-				},
-				function(response){
-					$rootScope.error=response.data
-					if(response.status==401)
-						$location.path('/login')
-				})
+		if($rootScope.loggedInUser.role=='ADMIN')
+		{
+			BlogService.getBlogsWaitingForApproval().then(
+					function(response){
+						$scope.blogsWaitingForApproval=response.data //select * from blogpost where approved=false
+					},
+					function(response){
+						$rootScope.error=response.data
+						if(response.status==401)
+							$location.path('/login')
+					})
 		}
 		
-
-		//List of blogs approved
-		BlogService.getApprovedBlogs().then(function(response){
+		BlogService.getApprovedBlogs().then(function(response)
+		{
 			$scope.blogsApproved=response.data //select * from blogpost where approved=true
 			
 			},
@@ -41,28 +37,4 @@ app.controller('BlogController',function($scope,$location,BlogService,$rootScope
 				$location.path('/login')
 		})
 		
-
-		$scope.addBold=function(blog){
-			if(blog.blogContent==undefined)
-				blog.blogContent=""
-				blog.blogContent=blog.blogContent + "<b></b>"
-		}
-		
-		$scope.addParagraph=function(blog){
-			if(blog.blogContent==undefined)
-				blog.blogContent=""
-			blog.blogContent=blog.blogContent + "<p></p>"
-		}
-		$scope.addBreak=function(blog){
-			if(blog.blogContent==undefined)
-				blog.blogContent=""
-			blog.blogContent=blog.blogContent + "<br>"
-		}
-		$scope.addHeading=function(blog){
-			if(blog.blogContent==undefined)
-				blog.blogContent=""
-			blog.blogContent=blog.blogContent + $scope.heading
-		}
-		
-
 })

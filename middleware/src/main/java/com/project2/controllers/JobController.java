@@ -73,7 +73,7 @@ public class JobController {
        @RequestMapping(value="/getjob/{id}",method=RequestMethod.GET)
        public ResponseEntity<?> getJob(@PathVariable int id, HttpSession session){
        	String email=(String)session.getAttribute("loginId");
-   		if(email==null){//not logged in [Authenticated]
+   		if(email==null){
    			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
    			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //login page
    		}
