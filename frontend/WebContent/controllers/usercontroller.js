@@ -15,7 +15,8 @@ app.controller('UserController',function($scope,UserService,$rootScope,$location
 			$location.path('/login')
 		 }
 		,function(response){
-			$scope.error=response.data  //ErrorClazz object
+			$scope.error=response.data
+			console.log(response.status)
 		})
 	}
 	
@@ -24,9 +25,12 @@ app.controller('UserController',function($scope,UserService,$rootScope,$location
 		UserService.login($scope.user).then(function(response){
 			$rootScope.loggedInUser=response.data
 			$cookieStore.put('loggedInUser',response.data)
+			console.log("Login : ")
+			console.log(response.data)
 			$location.path('/home')
 			},function(response){
 				$scope.error=response.data
+				console.log(response.data)
 				$location.path('/login')
 			})
 		

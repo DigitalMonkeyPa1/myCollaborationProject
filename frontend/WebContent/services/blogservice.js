@@ -3,7 +3,7 @@
  */
 app.factory('BlogService',function($http){
 	var blog={}
-		var BASE_URL="http://localhost:9090/colloboration_middleware"
+		var BASE_URL="http://localhost:9090/middleware"
 			
 			blog.addBlog=function(blog){
 			return $http.post(BASE_URL + "/addblogpost",blog)

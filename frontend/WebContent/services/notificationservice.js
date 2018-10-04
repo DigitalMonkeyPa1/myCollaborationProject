@@ -3,7 +3,7 @@
  */
 app.factory('NotificationService',function($http){
 	var notificationService={}
-	var BASE_URL="http://localhost:9090/colloboration_middleware"
+	var BASE_URL="http://localhost:9090/middleware"
 	notificationService.getAllNotification=function(){
 		//response.data = Array of notification objects
 		return $http.get(BASE_URL + "/getallnotification")

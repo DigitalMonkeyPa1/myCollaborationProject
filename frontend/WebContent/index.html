@@ -33,7 +33,7 @@
 
 </head>
 
-<body ng-app="app">
+<body ng-app="app" style="background-color: #FEDCBA">
 
 	<header>
 		<nav class="navbar navbar-default">
@@ -57,7 +57,7 @@
 				<div class="collapse navbar-collapse" id="collapse-example">
 					<ul class="nav navbar-nav">
 
-						<li><a href="#/register" ng-hide="loggedInUser.firstname">Sign UP</a></li>
+						<li><a href="#/register" ng-hide="loggedInUser.firstname">Sign Up</a></li>
 						<li><a href="#/login" ng-hide="loggedInUser.firstname">Sign In</a></li>
 						<li><a href="" ng-show="loggedInUser.firstname">Welcome&nbsp;{{loggedInUser.firstname}}&nbsp;{{loggedInUser.lastname}}</a></li>
 						
@@ -104,7 +104,7 @@
 
 						<li><a href="#/editprofile" ng-show="loggedInUser.firstname">My Profile</a></li>
 						<li><a href="#/uploadprofilepic" ng-show="loggedInUser.firstname">
-								<img src="http://localhost:9090/colloboration_middleware/getimage/{{loggedInUser.email}}" alt="upload picture" width="40px" height="40px">
+								<img src="http://localhost:9090/middleware/getimage/{{loggedInUser.email}}" alt="Upload Picture" width="40px" height="40px">
 							</a>
 						</li>
 
@@ -120,4 +120,3 @@
 </body>
 
 </html>
-
