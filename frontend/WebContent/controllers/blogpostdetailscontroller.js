@@ -1,14 +1,11 @@
-/**
- * BlogPostDetailController
- */
 app.controller('BlogPostDetailController',function($scope,$routeParams,$location,BlogService,$sce,$rootScope){
 	var id=$routeParams.id;
 	$scope.isRejected=false;
 	
 	BlogService.getBlog(id).then(function(response){
-		$scope.blogPost=response.data //select * from blogpost where id=?
+		$scope.blogPost=response.data
 		$scope.title=$sce.trustAsHtml($scope.blogPost.blogTitle)
-		$scope.content=$sce.trustAsHtml($scope.blogPost.blogContent);//blogContent HTML tags
+		$scope.content=$sce.trustAsHtml($scope.blogPost.blogContent);
 	},function(response){
 		$rootScope.error=response.data;
 		if(response.status==401)

@@ -61,12 +61,12 @@ public class JobController {
        @RequestMapping(value="/getalljobs",method=RequestMethod.GET)	
 	   public ResponseEntity<?> getAllJobs(HttpSession session){
     	String email=(String)session.getAttribute("loginId");
-		if(email==null){//not logged in [Authenticated]
+		if(email==null){
 			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
-			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //login page
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
 		}
 		List<Job> jobs=jobDao.getAllJobs();
-		return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);//success
+		return new ResponseEntity<List<Job>>(jobs,HttpStatus.OK);
 	}
        
 
@@ -75,7 +75,7 @@ public class JobController {
        	String email=(String)session.getAttribute("loginId");
    		if(email==null){
    			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
-   			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //login page
+   			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
    		}
    		Job job=jobDao.getJob(id);
    		return new ResponseEntity<Job>(job,HttpStatus.OK);

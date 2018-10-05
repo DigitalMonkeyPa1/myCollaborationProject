@@ -17,7 +17,7 @@ app.controller('BlogController',function($scope,$location,BlogService,$rootScope
 		{
 			BlogService.getBlogsWaitingForApproval().then(
 					function(response){
-						$scope.blogsWaitingForApproval=response.data //select * from blogpost where approved=false
+						$scope.blogsWaitingForApproval=response.data
 					},
 					function(response){
 						$rootScope.error=response.data
@@ -28,7 +28,7 @@ app.controller('BlogController',function($scope,$location,BlogService,$rootScope
 		
 		BlogService.getApprovedBlogs().then(function(response)
 		{
-			$scope.blogsApproved=response.data //select * from blogpost where approved=true
+			$scope.blogsApproved=response.data
 			
 			},
 			function(response){

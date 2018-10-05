@@ -14,24 +14,22 @@ import com.project2.model.BlogComment;
 import com.project2.model.BlogPost;
 import com.project2.model.Notification;
 
-
 @Repository
 @Transactional
 public class BlogPostDaoImpl implements BlogPostDao {
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
-	
+
 	public void addBlogPost(BlogPost blogPost) {
-		Session session=sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.save(blogPost);
-		
 
 	}
 
 	public List<BlogPost> getBlogs(boolean approved) {
-		Session session=sessionFactory.getCurrentSession();
-		Query query=session.createQuery("from BlogPost where approved=?");
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from BlogPost where approved=?");
 		query.setBoolean(0, approved);
 		return query.list();
 
@@ -39,17 +37,17 @@ public class BlogPostDaoImpl implements BlogPostDao {
 
 	public BlogPost getBlogById(int id) {
 
-		Session session=sessionFactory.getCurrentSession();
-		BlogPost blogPost=(BlogPost)session.get(BlogPost.class, id);
+		Session session = sessionFactory.getCurrentSession();
+		BlogPost blogPost = (BlogPost) session.get(BlogPost.class, id);
 		return blogPost;
 	}
 
 	public void blogApproved(int id) {
-		Session session=sessionFactory.getCurrentSession();
-		BlogPost blogPost=(BlogPost)session.get(BlogPost.class,id);
+		Session session = sessionFactory.getCurrentSession();
+		BlogPost blogPost = (BlogPost) session.get(BlogPost.class, id);
 		blogPost.setApproved(true);
 		session.update(blogPost);
-		Notification notification=new Notification();
+		Notification notification = new Notification();
 		notification.setBlogTitle(blogPost.getBlogTitle());
 		notification.setEmail(blogPost.getPostedBy().getEmail());
 		notification.setApprovalStatus("Approved");
@@ -57,9 +55,9 @@ public class BlogPostDaoImpl implements BlogPostDao {
 	}
 
 	public void blogRejected(int id, String rejectionReason) {
-		Session session=sessionFactory.getCurrentSession();
-		BlogPost blogPost=(BlogPost)session.get(BlogPost.class,id);
-		Notification notification=new Notification();
+		Session session = sessionFactory.getCurrentSession();
+		BlogPost blogPost = (BlogPost) session.get(BlogPost.class, id);
+		Notification notification = new Notification();
 		notification.setBlogTitle(blogPost.getBlogTitle());
 		notification.setEmail(blogPost.getPostedBy().getEmail());
 		notification.setApprovalStatus("Rejected");
@@ -69,16 +67,16 @@ public class BlogPostDaoImpl implements BlogPostDao {
 	}
 
 	public void addBlogComment(BlogComment blogComment) {
-		Session session=sessionFactory.getCurrentSession();
+		Session session = sessionFactory.getCurrentSession();
 		session.save(blogComment);
-		
+
 	}
 
 	public List<BlogComment> getAllBlogComments(int blogPostId) {
-		Session session=sessionFactory.getCurrentSession();
-		Query query=session.createQuery("from BlogComment where blogPost.id=?");
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from BlogComment where blogPost.id=?");
 		query.setInteger(0, blogPostId);
-		List<BlogComment> blogComments=query.list();
+		List<BlogComment> blogComments = query.list();
 		return blogComments;
 	}
 

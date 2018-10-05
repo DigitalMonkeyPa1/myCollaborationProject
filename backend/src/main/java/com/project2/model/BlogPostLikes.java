@@ -8,33 +8,38 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="blogpostlikes")
+@Table(name = "blogpostlikes")
 public class BlogPostLikes {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-private int likesId;//PK
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private int likesId;
 	@ManyToOne
-private BlogPost blogPost;//FK  blogpost_id
+	private BlogPost blogPost;
 	@ManyToOne
-private User user;//FK  user_email
+	private User user;
+
 	public int getLikesId() {
 		return likesId;
 	}
+
 	public void setLikesId(int likesId) {
 		this.likesId = likesId;
 	}
+
 	public BlogPost getBlogPost() {
 		return blogPost;
 	}
+
 	public void setBlogPost(BlogPost blogPost) {
 		this.blogPost = blogPost;
 	}
+
 	public User getUser() {
 		return user;
 	}
+
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 
 }

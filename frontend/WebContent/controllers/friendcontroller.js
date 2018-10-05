@@ -1,6 +1,3 @@
-/**
- * FriendController
- */
 app.controller('FriendController',function($scope,$location,FriendService,$rootScope){
 	function getAllSuggestedUsers(){
 	FriendService.getSuggestedUsers().then(

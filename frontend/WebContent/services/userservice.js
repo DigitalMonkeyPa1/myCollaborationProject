@@ -1,6 +1,3 @@
-/**
- * UserService
- */
 app.factory('UserService',function($http){
 	var userService={}
 	

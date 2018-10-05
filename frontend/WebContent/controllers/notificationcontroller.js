@@ -1,6 +1,5 @@
 app.controller('NotificationController',function($scope,$location,NotificationService,$rootScope,$routeParams){
 	var id=$routeParams.id;
-	//select * from notification where email=? and viewed=0
 	function getAllNotification(){
 		NotificationService.getAllNotification().then(
 				function(response){
@@ -24,7 +23,7 @@ app.controller('NotificationController',function($scope,$location,NotificationSe
 	})
 	
 	NotificationService.updateNotification(id).then(function(response){
-           getAllNotification()//select * from notification where email=? and viewed=0		
+           getAllNotification()	
 	},function(response){
 		$rootScope.error=response.data
 		if(response.status==401)

@@ -1,6 +1,3 @@
-/**
- * ChatController
- */
 app.controller('ChatController',  function($rootScope ,$scope, ChatService) {
     alert('entering chat controller')
     $scope.chats = [];

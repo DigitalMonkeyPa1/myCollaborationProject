@@ -76,7 +76,7 @@ public class BlogPostController {
 		String email=(String)session.getAttribute("loginId");
 		if(email==null){
 			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
-			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //2nd callback function
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
 		}
 		User user=userDao.getUser(email);
 		BlogPost blogPost=blogPostDao.getBlogById(id);
@@ -95,7 +95,7 @@ public class BlogPostController {
 		String email=(String)session.getAttribute("loginId");
 		if(email==null){
 			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
-			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //2nd callback function
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
 		}
 		BlogPostLikes blogPostLikes=blogPostLikesDao.hasUserLikedPost(id, email);
 		return new ResponseEntity<BlogPostLikes>(blogPostLikes,HttpStatus.OK);
@@ -104,7 +104,6 @@ public class BlogPostController {
 
 	@RequestMapping(value="/updatelikes/{id}",method=RequestMethod.PUT)
 	public ResponseEntity<?> updateLikes(@PathVariable int id,HttpSession session){
-		//id is 735
 		String email=(String)session.getAttribute("loginId");
 		if(email==null){
 			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");

@@ -1,8 +1,5 @@
-/**
- * BlogService
- */
 app.factory('BlogService',function($http){
-	var blog={}
+	var blogService={}
 		var BASE_URL="http://localhost:9090/middleware"
 			
 			blog.addBlog=function(blog){
@@ -52,8 +49,7 @@ app.factory('BlogService',function($http){
 	    blog.getAllBlogComments=function(id){
 	    	return $http.get(BASE_URL +"/getblogcomments/"+id)
 	    }
-
 	  
 
-		return blog;
+		return blogService;
 })

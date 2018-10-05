@@ -1,6 +1,3 @@
-/**
- * 
- */
 app.factory('FriendService',function($http){
 	var friendService={}
 	var BASE_URL = "http://localhost:9090/middleware"

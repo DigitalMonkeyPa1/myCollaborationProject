@@ -54,7 +54,7 @@ private FriendDao friendDao;
 			String email=(String)session.getAttribute("loginId");
 			if(email==null){
 				ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
-				return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //2nd callback function
+				return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
 			}
 			List<Friend> friendRequests=friendDao.getAllPendingRequests(email);
 			return new ResponseEntity<List<Friend>>(friendRequests,HttpStatus.OK);
@@ -66,7 +66,7 @@ private FriendDao friendDao;
 	 String email=(String)session.getAttribute("loginId");
 		if(email==null){
 			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
-			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //2nd callback function
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
 		}
 		friendDao.updateFriendRequest(friend);//friend status is updated to 'A' or 'D'
 		return new ResponseEntity<Friend>(friend,HttpStatus.OK);
@@ -78,7 +78,7 @@ private FriendDao friendDao;
 		String email=(String)session.getAttribute("loginId");
 		if(email==null){
 			ErrorClazz error=new ErrorClazz(4,"Unauthrozied access.. Please login");
-			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED); //2nd callback function
+			return new ResponseEntity<ErrorClazz>(error,HttpStatus.UNAUTHORIZED);
 		}
 			
 		List<User> friends=friendDao.listOfFriends(email);

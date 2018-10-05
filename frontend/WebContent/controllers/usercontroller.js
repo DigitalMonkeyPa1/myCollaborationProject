@@ -1,6 +1,6 @@
 app.controller('UserController',function($scope,UserService,$rootScope,$location,$cookieStore){
 	if($rootScope.loggedInUser!=undefined)
-		UserService.getUser().then(function(response){//only for loggedInUser - only if user is loggedin
+		UserService.getUser().then(function(response){
 		$scope.user=response.data
 	},function(response){
 		console.log(response.status)

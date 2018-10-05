@@ -1,7 +1,4 @@
-/**
- * JobService
- */
-	app.factory('JobService',function($http){
+app.factory('JobService',function($http){
 	var jobService={}
 	var BASE_URL = "http://localhost:9090/middleware"
 		
@@ -11,11 +8,11 @@
 	}
 
 	jobService.getAllJobs=function(){
-		return $http.get(BASE_URL + "/getalljobs")  //$scope.jobs=response.data
+		return $http.get(BASE_URL + "/getalljobs")
 	}
 
 	jobService.getJob=function(id){
-		return $http.get(BASE_URL + "/getjob/"+id) //@PathVarible in Middleware
+		return $http.get(BASE_URL + "/getjob/"+id)
 	}
 
 	return jobService;

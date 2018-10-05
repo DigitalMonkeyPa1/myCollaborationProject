@@ -11,9 +11,9 @@ app.controller('JobController',function($scope,JobService,$location,$rootScope,$
 		
 		
 		JobService.getAllJobs().then(function(response){
-			$scope.jobs=response.data // Array of Jobs in JSON fmt
+			$scope.jobs=response.data
 		},function(response){
-			$rootScope.error=response.data //ErrorClazz
+			$rootScope.error=response.data
 			$location.path('/login')
 		})
 		

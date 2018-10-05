@@ -38,7 +38,7 @@ public class UserDaoImpl implements UserDao {
 		query.setString(0, user.getEmail());
 		query.setString(1,user.getPassword());
 		user=(User)query.uniqueResult();
-		return user;// 1 user object[valid]  / null value [invalid credentials]
+		return user;// 1 user object = valid  / null value = invalid credentials
 	}
 	public void update(User user) {
 		Session session=sessionFactory.getCurrentSession();

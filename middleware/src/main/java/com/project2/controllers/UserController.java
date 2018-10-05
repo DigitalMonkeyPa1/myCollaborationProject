@@ -26,7 +26,7 @@ public class UserController {
 	@RequestMapping(value="/test", method = RequestMethod.GET)
 	public ResponseEntity<?> test()
 	{
-		return new ResponseEntity<String>("Howdy!", HttpStatus.OK);
+		return new ResponseEntity<String>("Hello, I am Project2 -> middleware!", HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)

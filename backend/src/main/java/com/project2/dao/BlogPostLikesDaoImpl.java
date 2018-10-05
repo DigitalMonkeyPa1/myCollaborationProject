@@ -15,34 +15,33 @@ import com.project2.model.User;
 @Repository
 @Transactional
 public class BlogPostLikesDaoImpl implements BlogPostLikesDao {
- @Autowired
- private SessionFactory sessionFactory;
- 
+	@Autowired
+	private SessionFactory sessionFactory;
+
 	public BlogPostLikes hasUserLikedPost(int postId, String email) {
-		Session session=sessionFactory.getCurrentSession();
-		Query query=session.createQuery("from BlogPostLikes where blogPost.id=? and user.email=?");
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("from BlogPostLikes where blogPost.id=? and user.email=?");
 		query.setInteger(0, postId);
 		query.setString(1, email);
-		BlogPostLikes blogPostLikes=(BlogPostLikes)query.uniqueResult();
+		BlogPostLikes blogPostLikes = (BlogPostLikes) query.uniqueResult();
 		return blogPostLikes;
 	}
-  
+
 	public BlogPost updateLikes(int postId, String email) {
-			Session session = sessionFactory.getCurrentSession();
-		BlogPostLikes blogPostLikes=hasUserLikedPost(postId, email);
-		
-		BlogPost blogPost=(BlogPost)session.get(BlogPost.class, postId);
-		
-		if(blogPostLikes==null){
-			BlogPostLikes likes=new BlogPostLikes();
-			User user=(User)session.get(User.class, email);
+		Session session = sessionFactory.getCurrentSession();
+		BlogPostLikes blogPostLikes = hasUserLikedPost(postId, email);
+
+		BlogPost blogPost = (BlogPost) session.get(BlogPost.class, postId);
+
+		if (blogPostLikes == null) {
+			BlogPostLikes likes = new BlogPostLikes();
+			User user = (User) session.get(User.class, email);
 			likes.setBlogPost(blogPost);
 			likes.setUser(user);
 			session.save(likes);
-			blogPost.setLikes(blogPost.getLikes() + 1); 
+			blogPost.setLikes(blogPost.getLikes() + 1);
 			session.update(blogPost);
-		}
-		else{
+		} else {
 			session.delete(blogPostLikes);
 			blogPost.setLikes(blogPost.getLikes() - 1);
 			session.update(blogPost);
