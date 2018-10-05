@@ -1,15 +1,35 @@
-<form >
-<pre>
-Enter email id:   <input type="text" ng-model="user.email" disabled>
-Enter password:   <input type="password" ng-model="user.password">
-Enter firstname:  <input type="text" ng-model="user.firstname">
-Enter lastname:   <input type="text" ng-model="user.lastname">
-Enter phonenumber:<input type="text" ng-model="user.phonenumber">
-Select Role:
-<input type="radio" ng-model="user.role" value="STUDENT"> STUDENT
-<input type="radio" ng-model="user.role" value="ALUMNI">ALUMNI
-<input type="radio" ng-model="user.role" value="EMPLOYEE"> EMPLOYEE
-<input type="submit" ng-click="update()">
-</pre>
+<form>
+
+	<div class="form-group">
+		<label for="email">&nbsp;Email address:</label> <input type="email" ng-model="user.email" class="form-control" disabled>
+	</div>
+
+	<div class="form-group">
+		<label for="email">&nbsp;Password:</label> <input type="password" ng-model="user.password" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label for="email">&nbsp;First name:</label> <input type="text" ng-model="user.firstname" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label for="email">&nbsp;Last name:</label> <input type="text" ng-model="user.lastname" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label for="email">&nbsp;Phone number:</label> <input type="text" ng-model="user.phonenumber" class="form-control">
+	</div>
+
+	<div class="form-group">
+		<label for="email">&nbsp;Select Role:</label>
+		<input type="radio" ng-model="user.role" value="STUDENT"> Student
+		<input type="radio" ng-model="user.role" value="ALUMNI"> Alumni
+		<input type="radio" ng-model="user.role" value="EMPLOYEE"> Employee
+	</div>
+
+	<div class="form-group">
+		<input type="submit" ng-click="update()" value="Update">
+	</div>
+
 </form>
 
